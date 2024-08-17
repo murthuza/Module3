@@ -1,41 +1,63 @@
-Murthuza Token Contract
-This repository contains the Murthuza ERC20 token contract. The Murthuza token (symbol: Ms) is an ERC20 token built using the OpenZeppelin library. The contract owner, referred to as the "owner", has the ability to mint new tokens. Token holders can also burn their own tokens and transfer tokens to other addresses.
+# Murthuza Token Contract
 
-Features
-Minting: The contract owner can mint new tokens.
-Burning: Token holders can burn their own tokens.
-Transferring: Token holders can transfer tokens to other addresses.
-Contract Details
-Name: Murthuza
-Symbol: Ms
-Functions
-mintToken(address account, uint256 amount)
+This repository contains the **Murthuza** ERC20 token contract. The Murthuza token (symbol: **MS**) is an ERC20 token built using the OpenZeppelin library. The contract owner has the ability to mint new tokens. Token holders can also burn their own tokens and transfer tokens to other addresses.
+
+## Features
+
+- **Minting**: The contract owner can mint new tokens.
+- **Burning**: Token holders can burn their own tokens.
+- **Transferring**: Token holders can transfer tokens to other addresses.
+
+## Contract Details
+
+- **Name**: Murthuza
+- **Symbol**: MS
+
+## Functions
+
+### `mintToken(address account, uint256 amount)`
+
 Mints new tokens and assigns them to the specified account. Only the contract owner can perform this action.
 
-Parameters:
+- **Parameters**:
+  - `account`: The address to receive the minted tokens.
+  - `amount`: The number of tokens to mint.
 
-account: The address to receive the minted tokens.
-amount: The number of tokens to mint.
-burnToken(address account, uint256 amount)
+### `burnToken(address account, uint256 amount)`
+
 Burns a specified amount of tokens from the caller's account.
 
-Parameters:
+- **Parameters**:
+  - `account`: The address from which tokens will be burned. Must be the caller's own address.
+  - `amount`: The number of tokens to burn.
 
-account: The address from which tokens will be burned. Must be the caller's own address.
-amount: The number of tokens to burn.
-transferToken(address recipient, uint256 amount)
+### `transferToken(address recipient, uint256 amount)`
+
 Transfers tokens from the caller's account to the specified recipient.
 
-Parameters:
+- **Parameters**:
+  - `recipient`: The address to receive the tokens.
+  - `amount`: The number of tokens to transfer.
 
-recipient: The address to receive the tokens.
-amount: The number of tokens to transfer.
-Modifiers
-onlyowner
+## Modifiers
+
+### `onlyOwner`
+
 Ensures that only the contract owner can call the modified function.
 
-Deployment
+## Deployment
+
 To deploy the Murthuza contract:
 
-Ensure you have the required dependencies:
+1. Ensure you have the required dependencies:
 
+   ```bash
+   npm install @openzeppelin/contracts
+2. Compile and deploy the contract using a development framework like Truffle or Hardhat.
+## License
+This project is licensed under the MIT License.
+
+## Acknowledgments
+This contract uses the OpenZeppelin library for standard ERC20 functionality.
+## Author
+Sayyed Murthuza
