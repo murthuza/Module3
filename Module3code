@@ -1,45 +1,36 @@
 // SPDX-License-Identifier: MIT
-pragmam solidity 0.8.18;
+pragma solidity ^0.8.20;
 
-contract MyTokenMs {
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract  Murthuza is ERC20
+{
     address public owner;
-    string public tokenName;
-    string public tokenSymbol;
-    uint256 public totalSupply;
 
-    mapping(address => uint256) public balances;
-
-    modifier onlyOwner() {
+    modifier onlyowner() 
+    {
         require(msg.sender == owner, "Only the contract owner can perform this action");
         _;
     }
 
-    constructor() {
+    constructor() ERC20("Murthuza", "MS")
+    {
         owner = msg.sender;
-        tokenName = "Murthuza";
-        tokenSymbol = "Ms";
-        totalSupply = 0;
     }
 
-   function mint(address _address, uint256 _value) public onlyOwner{
-        require(_address == owner, "Only the contract owner can mint tokens");
-        totalSupply += _value; 
-        balances[_address] += _value;
+    function mintToken(address account, uint256 amount) external onlyowner
+    {
+        _mint(account, amount);
     }
 
-
-   function burn(address _address, uint256 _value) public {
-        if (balances[_address] >= _value) {
-            totalSupply -= _value; 
-            balances[_address] -= _value;
-        }
+    function burnToken(address account, uint256 amount) external 
+    {
+        require(msg.sender == account, "You can only burn your own tokens");
+        _burn(account, amount);
     }
 
-   function transfer( address _from,address _to,uint256 value) public {
-        if (balances[_from] >= value) {
-
-            balances[_from] -= value;
-            balances[_to] += value;
-        }
+    function transferToken(address recipient, uint256 amount) external returns (bool) 
+    {
+        return transfer(recipient, amount);
     }
 }
